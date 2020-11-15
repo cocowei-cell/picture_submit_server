@@ -1,0 +1,26 @@
+{
+  "name": "serve",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "formidable": "^1.2.2",
+    "jsonwebtoken": "^8.5.1",
+    "jszip": "^3.5.0",
+    "koa": "^2.13.0",
+    "koa-bodyparser": "^4.3.0",
+    "koa-router": "^9.4.0",
+    "koa-session": "^6.1.0",
+    "koa-static": "^5.0.0",
+    "lodash": "^4.17.20",
+    "mongoose": "^5.10.11",
+    "nodemailer": "^6.4.15",
+    "socket.io": "^2.3.0",
+    "uuid": "^8.3.1"
+  }
+}
