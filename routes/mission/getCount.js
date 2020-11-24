@@ -19,7 +19,6 @@ module.exports = async (c) => {
     obj.y_count = users.length;
     return (c.body = { msg: "get_ok", code: 200, obj });
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "error", code: 401 });
   }
 };

@@ -34,7 +34,6 @@ module.exports = async (c) => {
       return (c.body = { msg: "用户名或密码不正确", code: 400 });
     }
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "用户名或密码不正确", code: 400 });
   }
 };

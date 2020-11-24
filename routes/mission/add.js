@@ -29,11 +29,11 @@ module.exports = async (c) => {
       });
     }
     // 保存到数据库中去
+    let tempTime;
     if (Number(time).toString() == "NaN") {
       time = 7;
-    } else {
-      time = Math.abs(Number(time) * 24 * 60 * 60 * 1000) + Date.now();
     }
+    tempTime = Math.abs(Number(time) * 24 * 60 * 60 * 1000) + Date.now();
     if (+count <= 0 || +count > 2) {
       count = 1;
     }
@@ -41,20 +41,11 @@ module.exports = async (c) => {
       name,
       count,
       class_id: classID,
-      time: time,
+      time: tempTime,
     });
     let user = await User.find({
       classID,
     });
-    if (checked === "true") {
-      // 取出班级中的所有人 遍历发送邮箱
-      for (let i = 0, len = user.length; i < len; i++) {
-        await sendQQEmail({
-          to: user[i].email,
-          html: `您好 ${user[i].stu_name},${name}开始啦，请在 <span style="color:red;font-size:18px;">${count}</span> 日之内学习并提交完毕，提交通道为： <a href="http://182.92.120.217:6197/#/index/mission">${name}</a>`,
-        });
-      }
-    }
     // 将本班级所有人的提交改为false
     await User.updateMany(
       {
@@ -62,9 +53,19 @@ module.exports = async (c) => {
       },
       { $set: { isSubmit: false } }
     );
+    if (checked === "true") {
+      // 取出班级中的所有人 遍历发送邮箱
+      for (let i = 0, len = user.length; i < len; i++) {
+        try {
+          await sendQQEmail({
+            to: user[i].email,
+            html: `您好 ${user[i].stu_name},${name}开始啦，请在 <span style="color:red;font-size:18px;">${time}</span> 日之内学习并提交完毕，提交通道为： <a href="http://182.92.120.217:8197">${name}</a>`,
+          });
+        } catch (error) {}
+      }
+    }
     return (c.body = { msg: "创建成功", code: 200, id: info._id });
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "error", code: 401 });
   }
 };

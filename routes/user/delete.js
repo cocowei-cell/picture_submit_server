@@ -31,7 +31,6 @@ module.exports = async (c) => {
     }
     return (c.body = { msg: "删除成功", code: 200 });
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "error", code: 401 });
   }
 };

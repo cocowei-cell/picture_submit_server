@@ -48,7 +48,6 @@ module.exports = async (c) => {
       classID: info._id,
     });
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "错误", code: 401 });
   }
 };

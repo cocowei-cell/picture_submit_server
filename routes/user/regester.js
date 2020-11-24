@@ -27,7 +27,6 @@ module.exports = async (c) => {
     });
     return (c.body = { msg: "注册成功", code: 200 });
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "注册失败", code: 400 });
   }
 };

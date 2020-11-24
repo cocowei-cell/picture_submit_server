@@ -32,7 +32,6 @@ module.exports = async (c) => {
     await User.updateOne({ _id }, { $set: { classID: classIDs._id } });
     return (c.body = { msg: "加入成功", code: 200, classID: classIDs._id });
   } catch (error) {
-    console.log(error.message);
     c.body = { msg: "error", code: 401 };
   }
 };

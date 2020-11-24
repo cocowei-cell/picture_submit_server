@@ -9,8 +9,6 @@ function getIO(server) {
   let io = IO(server);
   socketIO.io = io;
     io.on("connection", function (socket) {
-      // 退出事件
-      console.log("加入连接")
       // 监听 我的班级
       socket.on("login_class", async function (data) {
         // 加入班级后

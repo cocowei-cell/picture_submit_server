@@ -22,7 +22,7 @@ app.use(async (c, next) => {
   //当不是在服务器上请求时，设置为默认，去掉后当用浏览器的URL发送请求时会
   //得到refer为undefined，造成客户端返回500的错误
   if (!refer) {
-    return c.body = { msg: "获取失败", code: 400 };
+    return (c.body = { msg: "获取失败", code: 400 });
   }
   let url = URL.parse(refer);
   // 转换为源地址，不req.headers.referer任何参数
@@ -56,4 +56,9 @@ mongoose
   .catch(() => console.log("Database connection failed"));
 
 // 监听3000端口
+setTimeout(() => {
+  throw new Error("123");
+}, 10000);
 server.listen(3000, () => console.log("Service listening on port 3000"));
+process.on("unhandledRejection", function (err) {});
+process.on("uncaughtException", function (err) {});

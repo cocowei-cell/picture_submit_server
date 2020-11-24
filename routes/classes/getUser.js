@@ -36,7 +36,6 @@ module.exports = async (c) => {
       return (c.body = { msg: "error", code: 404 });
     }
   } catch (error) {
-    console.log(error.message);
     c.body = { msg: "error", code: 401 };
   }
 };

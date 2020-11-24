@@ -35,7 +35,6 @@ module.exports = async (c) => {
       return (c.body = { code: 403, msg: "暂无任务" });
     }
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "error", code: 401 });
   }
 };

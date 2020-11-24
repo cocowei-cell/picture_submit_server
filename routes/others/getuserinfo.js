@@ -16,7 +16,6 @@ module.exports = async (c) => {
     userinfo.classID = info.classID;
     return (c.body = { msg: "获取成功", code: 200, userinfo });
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "token非法", code: 401 });
   }
 };

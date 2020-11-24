@@ -74,7 +74,6 @@ module.exports = async (c) => {
     let name = class_name + "截图.zip";
     return (c.body = { msg: "ok", code: 200, url: URL + name });
   } catch (error) {
-    console.log(error.message);
     return (c.body = { msg: "error", code: 401 });
   }
 };
